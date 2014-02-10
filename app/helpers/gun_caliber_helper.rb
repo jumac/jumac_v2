@@ -1,0 +1,2 @@
+module GunCaliberHelper
+end

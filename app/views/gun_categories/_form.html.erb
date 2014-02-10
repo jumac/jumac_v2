@@ -1,0 +1,31 @@
+<%= form_for @guncategory, :html => {:class => "form-horizontal", :role=>"form"} do |f| %>
+  <% if @guncategory.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <h4>Error occured when saving the category.</h4>
+
+      <ul>
+      <% @guncategory.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+  	<%= f.label :name, class: "col-sm-2 control-label" %>
+  	<div class="col-sm-5">
+      <%= f.text_field :name, class: "form-control", :size=>"25", :maxlength=>"25" %>
+  	</div>
+  </div>
+  <div class="form-group">      
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :description, cols: 20, class: "form-control" %>
+    </div>
+  </div>
+  <div class="btn-group pull-right">
+    <%= f.submit :value => "Save", :class => 'btn btn-primary' %>
+  	<%= link_to 'Cancel', gun_categories_path, :class => 'btn btn-primary' %>
+  </div>      
+  
+<% end %>

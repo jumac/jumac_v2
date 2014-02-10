@@ -1,0 +1,113 @@
+<%= form_for @user, :html => {:class => "form-horizontal", :role=>"form"} do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <h4>Error occured when saving the user.</h4>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :username, class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :username, class: "form-control", :size=>"25", :maxlength=>"125" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :email, class: "form-control", :size=>"25", :maxlength=>"250" %>
+    </div>
+  </div>
+  
+
+  <% if editmode %> 
+    <div class="row">
+      <div class="page-header">
+        <h4> User Profile </h4>
+      </div>
+    </div>
+
+    <%= f.fields_for :user_profile do |p| %>
+      <div class="form-group">
+        <%= p.label :last_name, 'Last Name', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :last_name, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= p.label :first_name, 'First Name', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :first_name, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= p.label :middle_name, 'Middle Name', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :middle_name, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= p.label :mobile_no, 'Mobile No.', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :mobile_no, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= p.label :land_line, 'Telephone No.', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :land_line, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= p.label :address1, 'Address', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :address1, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= p.label :city, 'City', class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= p.text_field :city, class: "form-control", :size=>"25", :maxlength=>"250" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="page-header">
+        <h4> Member of: </h4>
+      </div>
+    </div>
+
+    <!-- Check if user is admin -->
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        <% for role in @roles %>
+          <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %> <%= role.name %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :password, "Password", class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.password_field :password, class: "form-control", :size=>"25", :maxlength=>"125" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirm Password", class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.password_field :password_confirmation, class: "form-control", :size=>"25", :maxlength=>"125" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="btn-group pull-right">
+    <%= f.submit :value => "Save", :class => 'btn btn-primary' %>
+    <%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

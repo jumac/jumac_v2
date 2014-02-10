@@ -1,0 +1,18 @@
+<% if session[:user_id] %>
+	<ul class="nav navbar-nav navbar-right">
+		<li>
+			<p class="navbar-text">Welcome, <%= link_to @username, edit_user_path(session[:user_id]) %> , <%= link_to 'Log out', logout_path, method: :delete, :class=>"btn btn-success" %>
+			</p> 
+		</li>
+	</ul>
+<% else %>
+	<%= form_tag({:action => 'create', :controller => 'sessions'}, {:class => 'navbar-form navbar-right', :role=> 'form'}) do %>
+		<div class="form-group">
+			<%= text_field_tag :username, params[:username], :class=>"form-control", :placeholder=>"Username" %>
+		</div>
+		<div class="form-group">
+			<%= password_field_tag :password, params[:password],  :class=>"form-control", :placeholder=>"Password" %>
+		</div>
+		<%= submit_tag "Login", :class=>"btn btn-success" %>		
+	<% end %>
+<% end %>
