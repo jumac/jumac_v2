@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  protected 
-
   def authorize
   	unless User.find_by_id(session[:user_id])
   		redirect_to login_path, :alert => "Please login."
