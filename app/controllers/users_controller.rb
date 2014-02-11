@@ -1,6 +1,8 @@
+require 'securerandom'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
-  before_action :get_all_roles, only: [:new, :edit]
+  before_action :get_all_roles, only: [:edit]
 
   # GET /users
   # GET /users.json
@@ -29,9 +31,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.verification_code = SecureRandom.base64(10)
+
 
     respond_to do |format|
       if @user.save
+        UserConfirmationMailer.registration_confirmation(@user).deliver
         format.html { redirect_to users_path, notice: "User #{@user.username} was successfully created." }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -46,19 +51,19 @@ class UsersController < ApplicationController
   def update
     set_user
 
-    @userroles = params["user"]["role_ids"]
-    if !@userroles 
-      @userroles.each do |role_id|
-        puts role_id
-      end
-    end
+    # @userroles = params["user"]["role_ids"]
+    # if !@userroles 
+    #   @userroles.each do |role_id|
+    #     puts role_id
+    #   end
+    # end
 
     if !@user.user_profile 
       @user.build_user_profile
     end    
     respond_to do |format|
       if @user.update(user_params)                
-        format.html { redirect_to users_path, notice: "#{@userroles.count} User #{@user.username} was successfully updated." }
+        format.html { redirect_to users_path, notice: "User #{@user.username} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -75,6 +80,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_path }
       format.json { head :no_content }
     end
+  end
+
+  def email_verification
+
   end
 
   private

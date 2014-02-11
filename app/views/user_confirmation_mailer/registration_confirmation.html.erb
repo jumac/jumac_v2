@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to doubletapcebu.com, <%= @user.username %></h1>    
+    <p>
+      Please click the link below to confirm your email.
+
+		<%= link_to 'link', :controller => 'users', :action => 'email_verification', :only_path => false, :id => @user.id, :verification_code => @user.verification_code, :host => 'http://localhost:3000' %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
+

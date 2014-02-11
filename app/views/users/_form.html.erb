@@ -108,6 +108,10 @@
 
   <div class="btn-group pull-right">
     <%= f.submit :value => "Save", :class => 'btn btn-primary' %>
-    <%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
+    <% if editmode %>
+      <%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
+    <% else %> 
+      <%= link_to 'Back', home_index_path, :class => 'btn btn-primary' %>
+    <% end %>
   </div>
 <% end %>

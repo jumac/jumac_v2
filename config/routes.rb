@@ -8,6 +8,8 @@ JumacV2::Application.routes.draw do
 
   resources :users, :except => [:show]
 
+  get 'users/email_verification/:id' => 'users#email_verification', :as => :verify_email
+
   resources :roles, :except => [:show]
   resources :gun_categories, :except => [:show], :path => 'guncategories'
   get "gun_caliber/index"

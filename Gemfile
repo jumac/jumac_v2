@@ -50,3 +50,5 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# gem "mail", "2.1.3"

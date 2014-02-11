@@ -16,5 +16,9 @@ class User < ActiveRecord::Base
     if email.present? and not email.match(/^[^@][\w.-]+@[\w.-]+[.][a-z]{2,4}$/i)
       errors.add :email, "This is not a valid email format"
     end
+
+    def is_in_role(rolename)
+    	
+    end
   end
 end
