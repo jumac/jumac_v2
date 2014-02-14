@@ -20,6 +20,9 @@ module JumacV2
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+      "<div class=\"has-error form-group\">#{html_tag}</div>".html_safe
+    }
     config.action_mailer.default_url_options = { :host => "http://localhost:3000" }
   end
 end

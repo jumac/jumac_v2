@@ -331,3 +331,5 @@ footer {
 textarea {
     resize: none;
 }
+
+.has-error { display: inline; }

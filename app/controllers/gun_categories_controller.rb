@@ -1,6 +1,6 @@
 class GunCategoriesController < ApplicationController
   def index
-    guncategory_all
+    guncategory_all 
   end
 
   def new
@@ -45,4 +45,4 @@ class GunCategoriesController < ApplicationController
   def guncategory_all
     @guncategories = GunCategory.all
   end
-end
+end 

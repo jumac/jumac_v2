@@ -12,12 +12,9 @@ JumacV2::Application.routes.draw do
 
   resources :roles, :except => [:show]
   resources :gun_categories, :except => [:show], :path => 'guncategories'
-  get "gun_caliber/index"
-  get "gun_caliber/new"
-  get "gun_caliber/edit"
-  get "gun_caliber/create"
-  get "gun_caliber/update"
-  get "gun_caliber/destroy"
+  resources :gun_calibers, :except => [:show], :path => 'guncalibers'
+
+
   get "home/index"
   get "home/about"
 
