@@ -6,7 +6,7 @@
 		</li>
 	</ul>
 <% else %>
-	<%= form_tag({:action => 'create', :controller => 'sessions'}, {:class => 'navbar-form navbar-right', :role=> 'form'}) do %>
+	<%= form_tag({:action => 'create', :controller => 'sessions'}, {:class => 'navbar-form navbar-right', :role=> 'search'}) do %>
 		<div class="form-group">
 			<%= text_field_tag :username, params[:username], :class=>"form-control", :placeholder=>"Username" %>
 		</div>
@@ -14,6 +14,6 @@
 			<%= password_field_tag :password, params[:password],  :class=>"form-control", :placeholder=>"Password" %>
 		</div>
 		<%= submit_tag "Login", :class=>"btn btn-primary" %>	
-		<%= link_to "Sign-in", new_user_path, :class => 'btn btn-primary' %>	
+		<%= link_to "Register", new_user_path, :class => 'btn btn-primary' %>	
 	<% end %>
 <% end %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model_name: MyString
+  short_desc: MyString
+  long_desc: MyText
+  gun_category_id: 
+  gun_manufacturer_id: 
+  round_capacity: 
+
+two:
+  model_name: MyString
+  short_desc: MyString
+  long_desc: MyText
+  gun_category_id: 
+  gun_manufacturer_id: 
+  round_capacity: 

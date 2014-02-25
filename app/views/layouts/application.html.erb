@@ -13,7 +13,7 @@
 
   <!-- Start: Navigation wrapper -->
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">            
         <!-- Below button used for responsive navigation -->
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,26 +29,39 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
-            <ul class="dropdown-menu">              
-              <li class="navbar-header">Maintenance</li>
-              <li>
-              	<%= link_to 'Category', gun_categories_path %>
-              </li>
-              <li><a href="product.html">Product2</a></li>
-              <li><a href="product.html">Product3</a></li>
-              <li><a href="all_products.html">All products</a></li>             
-              <li class="divider"></li>
-              <li class="navbar-header">Security</li>
+            <ul class="dropdown-menu">                                          
               <li>
 				        <%= link_to 'Roles', roles_path %>
 			        </li>
               <li>
                 <%= link_to 'Users', users_path %>
               </li>
+              <li class="divider"></li>
               <li><a href="service.html">Service3</a></li>
               <li><a href="all_services.html">All services</a></li>
             </ul>                  
           </li>                
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maintenance<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to 'Category', gun_categories_path %>
+              </li>
+              <li>
+                <%= link_to 'Caliber', gun_calibers_path %>
+              </li>
+              <li>
+                <%= link_to 'Finish', gun_finishes_path %>
+              </li>
+              <li>
+                <%= link_to 'Manufacturer', gun_manufacturers_path %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to 'Guns', guns_path %>
+              </li>
+            </ul>
+          </li>           
           <li><a href="contact_us.html">Contact us</a></li>           
         </ul>        
         <%= render :partial => 'layouts/login' %>

@@ -1,0 +1,33 @@
+<h1>Listing Guns</h1>
+
+<% if notice %>
+  <div><%= notice %></div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Short Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guns.each do |gun| %>
+      <tr>
+        <td><%= gun.model_name %></td>
+        <td><%= gun.short_desc %></td>
+        <td><%= link_to 'Show', gun %></td>
+        <td><%= link_to 'Edit', edit_gun_path(user) %></td>
+        <td><%= link_to 'Destroy', gun, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gun', new_gun_path %>

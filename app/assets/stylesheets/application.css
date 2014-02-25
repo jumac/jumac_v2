@@ -333,3 +333,12 @@ textarea {
 }
 
 .has-error { display: inline; }
+
+.form-control {
+  font-size: 12px;
+  height: 32px;
+}
+
+.btn {
+  font-size: 12px;
+}

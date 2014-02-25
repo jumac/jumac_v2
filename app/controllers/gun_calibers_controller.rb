@@ -1,4 +1,4 @@
-class GunCaliberController < ApplicationController
+class GunCalibersController < ApplicationController
   def index
     gun_caliber_all 
   end
@@ -12,7 +12,7 @@ class GunCaliberController < ApplicationController
   end
 
   def create
-    @guncaliber = GunCaliber.new(params[:gun_caliber])
+    @guncaliber = GunCaliber.new(gun_caliber_params)
     if @guncaliber.save 
       redirect_to gun_calibers_path, :notice => "Gun caliber #{@guncaliber.name} was saved successfully."
     else 
@@ -36,8 +36,8 @@ class GunCaliberController < ApplicationController
   end
 
   private
-  def gun_caliber_params
-    params.require(:gun_caliber)
+  def gun_caliber_params 
+    params.require(:gun_caliber).permit(:name, :description)
   end
 
   def gun_caliber_all

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	validates :username, :presence => true, :length => {:minimum => 3}, :uniqueness => true
 	validates :email, :presence => true, :uniqueness => true
 	validate :email_regex
-
+ 
 	has_secure_password
 
 	has_one :user_profile, :dependent => :destroy

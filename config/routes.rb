@@ -1,6 +1,6 @@
 JumacV2::Application.routes.draw do
 
-  controller :sessions do
+    controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
@@ -13,6 +13,9 @@ JumacV2::Application.routes.draw do
   resources :roles, :except => [:show]
   resources :gun_categories, :except => [:show], :path => 'guncategories'
   resources :gun_calibers, :except => [:show], :path => 'guncalibers'
+  resources :gun_finishes, :except => [:show], :path => 'gunfinishes'
+  resources :gun_manufacturers, :except => [:show], :path => 'gunmanufacturers'
+  resources :guns
 
 
   get "home/index"

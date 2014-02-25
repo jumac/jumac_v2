@@ -1,0 +1,70 @@
+<%= form_for @gun, :html => {:class => "form-horizontal", :role=>"form"} do |f| %>
+  <% if @gun.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <h4>Error occured when saving this gun.</h4>
+
+      <ul>
+      <% @gun.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :gun_category_id, 'Category', class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.collection_select(:gun_category_id, @guncategory, :id, :name, {:include_blank => 'Please select..'}, { class: "form-control"}) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :gun_manufacturer_id, 'Company', class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.collection_select(:gun_manufacturer_id, @gunmanufacturer, :id, :name, {:include_blank => 'Please select..'}, { class: "form-control"}) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :model_name, 'Model Name', class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :model_name, class: "form-control", :size=>"25", :maxlength=>"125" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :short_desc, 'Short Description', class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_area :short_desc, cols: 20, class: "form-control", :maxlength=> "250" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :long_desc, 'Long Description', class: "col-sm-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_area :long_desc, cols: 20, class: "form-control", :maxlength=> "250" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="page-header">
+      <h4>Available Caliber/s:</h4>
+    </div>
+  </div>
+
+  <!-- Check if user is admin -->
+  <div class="row">
+    <div class="col-md-10 col-md-offset-2">
+      <%= f.fields_for :gun_calibers do |cal| %>
+        <% for caliber in @guncalibers %>
+          <%= cal.check_box caliber.id, @gun.gun_calibers.include?(cal) %> 
+          <%= cal.name %>
+        <% end %> 
+      <% end %> 
+    </div>
+  </div>
+  
+
+  <div class="btn-group pull-right">
+    <%= f.submit :value => "Save", :class => 'btn btn-primary' %>
+    <%= link_to 'Back', guns_path, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

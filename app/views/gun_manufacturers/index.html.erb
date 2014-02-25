@@ -1,0 +1,38 @@
+
+<div class="row">
+  <div class="span12">
+    <% content_for :header do  %>
+      <p>Header for Gun Manufacturer Here... </p>
+    <% end %>
+
+    <div class="page-header">
+      <h4>Gun Manufacturer/s</h4>
+    </div>
+
+    <% if flash[:notice] %>
+    <div><%= flash[:notice] %></div>
+    <% end %>
+
+    <div class="table-responsive">
+      <table class="table table-brdered table-striped table-hover">
+        <tr>
+          <th class="col-sm-2"></th>
+          <th class="col-sm-5">Name</th>
+          <th class="col-sm-5">Description</th>    
+        </tr>
+
+      <% @gunmanufacturers.each do |gunmanufacturer| %>
+        <tr>
+        	<td class="col-sm-2"><%= link_to 'Edit', edit_gun_manufacturer_path(gunmanufacturer) %> <%= link_to 'Destroy', gunmanufacturer, confirm: 'Are you sure you want to delete this category?', method: :delete %></td>
+          <td class="col-sm-5"><%= gunmanufacturer.name %></td>
+          <td class="col-sm-5"><%= gunmanufacturer.description %></td>    
+        </tr>
+      <% end %>
+      </table>
+    </div>
+
+    <br />
+
+    <%= link_to 'New Manufacturer', new_gun_manufacturer_path, class: "btn btn-primary" %>
+  </div>
+</div>

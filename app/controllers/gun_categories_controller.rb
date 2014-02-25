@@ -11,7 +11,7 @@ class GunCategoriesController < ApplicationController
     @guncategory = GunCategory.find(params[:id])
   end
 
-  def create
+  def create 
     @guncategory = GunCategory.new(guncategory_params)
 
     if @guncategory.save
