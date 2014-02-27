@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218070610) do
+ActiveRecord::Schema.define(version: 20140225093213) do
 
   create_table "gun_available_calibers", force: true do |t|
     t.integer  "gun_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140218070610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "round_capacity"
+    t.boolean  "is_available"
   end
 
   create_table "gun_available_finishes", force: true do |t|

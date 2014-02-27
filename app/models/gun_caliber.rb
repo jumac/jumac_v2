@@ -3,5 +3,5 @@ class GunCaliber < ActiveRecord::Base
 	validates :description, :length => { :maximum => 250 }
 
 	has_many :gun_available_calibers, :dependent => :destroy
-	has_many :guns, through: :gun_available_calibers
+	accepts_nested_attributes_for :gun_available_calibers
 end

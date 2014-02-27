@@ -10,6 +10,6 @@ class Gun < ActiveRecord::Base
 	has_many :gun_available_finishes, :dependent => :destroy
 	has_many :gun_finishes, through: :gun_available_finishes	
 	accepts_nested_attributes_for :gun_finishes
-
+ 
 	
 end

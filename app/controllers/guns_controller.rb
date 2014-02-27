@@ -11,13 +11,16 @@ class GunsController < ApplicationController
 
   def new
     @gun = Gun.new
-    @gun.gun_calibers.build 
-    @gun.gun_finishes.build
+    # @gun.gun_available_calibers.build 
+    @guncalibers = GunCaliber.all
+    @guncalibers.each do |gc| 
+      @gun.gun_available_calibers.find_or_create_by_gun_caliber_id(:gun_caliber_id => gc.id) {|u| u.is_available}
+    end
+    @gun.gun_finishes.build 
   end
 
   def create
-    @gun = Gun.new(gun_params)
-
+    @gun = Gun.new(gun_params)    
     if @gun.save
       redirect_to guns_path, :notice => "Gun #{@gun.model_name} was created successfully."
     else
@@ -45,7 +48,7 @@ class GunsController < ApplicationController
   def gun_params
     params.require(:gun).permit(:model_name, :short_desc, :long_desc, :gun_category_id, :gun_manufacturer_id,       
       :gun_finish_ids, 
-      :gun_available_calibers_attributes => [:id, :gun_caliber_id, :round_capacity] 
+      :gun_available_calibers_attributes => [:id, :gun_caliber_id, :round_capacity, :is_available] 
       )
   end
 

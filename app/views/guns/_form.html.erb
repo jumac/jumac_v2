@@ -47,17 +47,17 @@
   <div class="row">
     <div class="page-header">
       <h4>Available Caliber/s:</h4>
+      <%= :gun_calibers.length %>
+      <%= GunCaliber.all.length %>
     </div>
   </div>
 
   <!-- Check if user is admin -->
   <div class="row">
     <div class="col-md-10 col-md-offset-2">
-      <%= f.fields_for :gun_calibers do |cal| %>
-        <% for caliber in @guncalibers %>
-          <%= cal.check_box caliber.id, @gun.gun_calibers.include?(cal) %> 
-          <%= cal.name %>
-        <% end %> 
+      <% f.fields_for :gun_available_calibers do |cal| %>
+        <%= cal.check_box :is_available, {:class => "myClass"}, "1", "0" %> 
+        <%= :gun_caliber_id %>
       <% end %> 
     </div>
   </div>
